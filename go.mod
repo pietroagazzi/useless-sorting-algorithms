@@ -1,4 +1,4 @@
-module main
+module github.com/pietroagazzi/useless-sorting-algorithms
 
 go 1.18
 

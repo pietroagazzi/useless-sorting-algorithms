@@ -8,6 +8,8 @@ import (
 	"time"
 
 	"github.com/alexflint/go-arg"
+	"github.com/pietroagazzi/useless-sorting-algorithms/pkg/sorting"
+	"github.com/pietroagazzi/useless-sorting-algorithms/pkg/utils"
 )
 
 var args struct {
@@ -30,7 +32,7 @@ func AdaptSleepsort(arr []int) []int {
 		uintArr = append(uintArr, uint(num))
 	}
 
-	result := SleepSort(uintArr)
+	result := sorting.SleepSort(uintArr)
 
 	var adaptedResult []int
 
@@ -43,8 +45,8 @@ func AdaptSleepsort(arr []int) []int {
 
 func main() {
 	var algorithms = map[string]func([]int) []int{
-		"bogosort":   Bogosort,
-		"stalinsort": StalinSort,
+		"bogosort":   sorting.Bogosort,
+		"stalinsort": sorting.StalinSort,
 		"sleepsort":  AdaptSleepsort,
 	}
 
@@ -83,7 +85,7 @@ func main() {
 	elapsed := time.Since(start)
 
 	fmt.Printf("Output: %v\n", result)
-	fmt.Printf("Is sorted? %t\n", IsSorted(result))
+	fmt.Printf("Is sorted? %t\n", utils.IsSorted(result))
 
 	fmt.Printf("\nElapsed time: %s\n", elapsed)
 }

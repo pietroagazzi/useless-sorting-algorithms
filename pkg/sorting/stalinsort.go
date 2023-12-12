@@ -1,4 +1,4 @@
-package main
+package sorting
 
 func StalinSort(arr []int) []int {
 	var sorted []int
