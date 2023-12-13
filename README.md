@@ -65,3 +65,5 @@ The project includes the following sorting algorithms:
 3. [**Sleepsort**](https://it.wikipedia.org/wiki/Sleep_sort): An inefficient, but interesting, sorting algorithm that sorts numbers by sleeping for an interval corresponding to each number and then printing it.
 
 4. [**Gnomesort**](https://en.wikipedia.org/wiki/Gnome_sort): A sorting algorithm that is based on the idea of a garden gnome sorting his flower pots.
+
+5. [**Slowsort**](https://en.wikipedia.org/wiki/Slowsort): An inefficient sorting algorithm based on the multiply and surrender paradigm.

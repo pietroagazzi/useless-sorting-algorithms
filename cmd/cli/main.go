@@ -42,6 +42,11 @@ var algorithms = map[string]Algorithm{
 		Sorter:      sorting.Stalinsort,
 		Description: "A joke sorting algorithm that 'solves' the problem of sorting a list by eliminating all elements out of order.",
 	},
+	"slowsort": {
+		Sorter: AdaptSlowsort(sorting.Slowsort),
+		// Multiply and Surrender
+		Description: "A reluctant sorting algorithm based on the 'multiply and surrender' principle.",
+	},
 }
 
 func init() {
@@ -102,5 +107,11 @@ func AdaptUint(f func([]uint) []uint) Sorter {
 		}
 
 		return intArr
+	}
+}
+
+func AdaptSlowsort(f func([]int, int, int) []int) Sorter {
+	return func(arr []int) []int {
+		return f(arr, 0, len(arr)-1)
 	}
 }
