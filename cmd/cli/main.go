@@ -18,14 +18,31 @@ var args struct {
 	List      bool   `arg:"-L,--list" help:"list all algorithms"`
 }
 
-var algorithms = map[string]Sorter{
-	"bogosort":   sorting.Bogosort,
-	"sleepsort":  AdaptUint(sorting.Sleepsort),
-	"stalinsort": sorting.Stalinsort,
-	"gnomesort":  sorting.Gnomesort,
+type Algorithm struct {
+	Sorter
+	Description string
 }
 
 type Sorter func([]int) []int
+
+var algorithms = map[string]Algorithm{
+	"bogosort": {
+		Sorter:      sorting.Bogosort,
+		Description: "An extremely inefficient sorting algorithm that shuffles the array until it is sorted.",
+	},
+	"gnomesort": {
+		Sorter:      sorting.Gnomesort,
+		Description: "A sorting algorithm that is based on the idea of a garden gnome sorting his flower pots.",
+	},
+	"sleepsort": {
+		Sorter:      AdaptUint(sorting.Sleepsort),
+		Description: "An inefficient, but interesting, sorting algorithm that sorts numbers by sleeping for an interval corresponding to each number.",
+	},
+	"stalinsort": {
+		Sorter:      sorting.Stalinsort,
+		Description: "A joke sorting algorithm that 'solves' the problem of sorting a list by eliminating all elements out of order.",
+	},
+}
 
 func init() {
 	rand.New(rand.NewSource(time.Now().UnixNano()))
@@ -34,7 +51,7 @@ func init() {
 	if args.List {
 		fmt.Println("List of useless sorting algorithms:")
 		for k := range algorithms {
-			fmt.Println("\t-", k)
+			fmt.Println("-", k, "\n   ", algorithms[k].Description)
 		}
 		os.Exit(0)
 	}
@@ -59,7 +76,7 @@ func main() {
 
 	start := time.Now()
 
-	result := algorithms[args.Algorithm](arr)
+	result := algorithms[args.Algorithm].Sorter(arr)
 
 	elapsed := time.Since(start)
 
