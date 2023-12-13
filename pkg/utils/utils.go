@@ -22,3 +22,10 @@ func GenerateRandomArray(n, rangeL, rangeR int) []int {
 
 	return arr
 }
+
+func Swap(arr *[]int, e1 int, e2 int) {
+	swap := (*arr)[e1]
+
+	(*arr)[e1] = (*arr)[e2]
+	(*arr)[e2] = swap
+}

@@ -22,6 +22,7 @@ var algorithms = map[string]Sorter{
 	"bogosort":   sorting.Bogosort,
 	"sleepsort":  AdaptUint(sorting.Sleepsort),
 	"stalinsort": sorting.Stalinsort,
+	"gnomesort":  sorting.Gnomesort,
 }
 
 type Sorter func([]int) []int
@@ -52,7 +53,7 @@ func init() {
 }
 
 func main() {
-	arr := utils.GenerateRandomArray(args.Lenght, 0, int(math.Pow10(args.Lenght)))
+	arr := utils.GenerateRandomArray(args.Lenght, 0, int(math.Pow(float64(args.Lenght), 2)))
 
 	fmt.Printf("Running %s with %d elements\n\nInput: %v\n", args.Algorithm, args.Lenght, arr)
 

@@ -63,3 +63,5 @@ The project includes the following sorting algorithms:
 2. [**Stalinsort**](https://github.com/gustavo-depaula/stalin-sort): A joke sorting algorithm that 'solves' the problem of sorting a list by eliminating all elements out of order.
 
 3. [**Sleepsort**](https://it.wikipedia.org/wiki/Sleep_sort): An inefficient, but interesting, sorting algorithm that sorts numbers by sleeping for an interval corresponding to each number and then printing it.
+
+4. [**Gnomesort**](https://en.wikipedia.org/wiki/Gnome_sort): A sorting algorithm that is based on the idea of a garden gnome sorting his flower pots.
