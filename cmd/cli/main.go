@@ -19,11 +19,9 @@ var args struct {
 }
 
 type Algorithm struct {
-	Sorter
+	utils.Sorter
 	Description string
 }
-
-type Sorter func([]int) []int
 
 var algorithms = map[string]Algorithm{
 	"bogosort": {
@@ -35,7 +33,7 @@ var algorithms = map[string]Algorithm{
 		Description: "A sorting algorithm that is based on the idea of a garden gnome sorting his flower pots.",
 	},
 	"sleepsort": {
-		Sorter:      AdaptUint(sorting.Sleepsort),
+		Sorter:      utils.AdaptSleepsort(sorting.Sleepsort),
 		Description: "An inefficient, but interesting, sorting algorithm that sorts numbers by sleeping for an interval corresponding to each number.",
 	},
 	"stalinsort": {
@@ -43,7 +41,7 @@ var algorithms = map[string]Algorithm{
 		Description: "A joke sorting algorithm that 'solves' the problem of sorting a list by eliminating all elements out of order.",
 	},
 	"slowsort": {
-		Sorter: AdaptSlowsort(sorting.Slowsort),
+		Sorter: utils.AdaptSlowsort(sorting.Slowsort),
 		// Multiply and Surrender
 		Description: "A reluctant sorting algorithm based on the 'multiply and surrender' principle.",
 	},
@@ -89,29 +87,4 @@ func main() {
 	fmt.Printf("Is sorted? %t\n", utils.IsSorted(result))
 
 	fmt.Printf("\nElapsed time: %s\n", elapsed)
-}
-
-// AdaptUint adapts a function that works on uint slices to work on int slices
-func AdaptUint(f func([]uint) []uint) Sorter {
-	return func(arr []int) []int {
-		uintArr := make([]uint, len(arr))
-		for i, v := range arr {
-			uintArr[i] = uint(v)
-		}
-
-		result := f(uintArr)
-
-		intArr := make([]int, len(result))
-		for i, v := range result {
-			intArr[i] = int(v)
-		}
-
-		return intArr
-	}
-}
-
-func AdaptSlowsort(f func([]int, int, int) []int) Sorter {
-	return func(arr []int) []int {
-		return f(arr, 0, len(arr)-1)
-	}
 }
