@@ -17,3 +17,6 @@ run : build
 
 clean:
 	rm -f $(BINARY)	
+
+fmt:
+	$(GO) fmt ./...
