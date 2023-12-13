@@ -7,11 +7,11 @@ import (
 
 func Thread(el uint, wg *sync.WaitGroup, ch chan uint) {
 	defer wg.Done()
-	time.Sleep(time.Duration(el) * (time.Second))
+	time.Sleep(time.Duration(el) * time.Second)
 	ch <- el
 }
 
-func SleepSort(arr []uint) []uint {
+func Sleepsort(arr []uint) []uint {
 	var sorted []uint
 	var wg sync.WaitGroup
 	ch := make(chan uint)

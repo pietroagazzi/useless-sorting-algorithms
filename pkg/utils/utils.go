@@ -1,5 +1,8 @@
 package utils
 
+import "math/rand"
+
+// IsSorted check if the array is sorted
 func IsSorted(arr []int) bool {
 	for i := 1; i < len(arr); i++ {
 		if arr[i-1] > arr[i] {
@@ -8,4 +11,14 @@ func IsSorted(arr []int) bool {
 	}
 
 	return true
+}
+
+// GenerateRandomArray generate a random array with length n, and the value is in [rangeL, rangeR]
+func GenerateRandomArray(n, rangeL, rangeR int) []int {
+	arr := make([]int, n)
+	for i := 0; i < n; i++ {
+		arr[i] = rangeL + rand.Intn(rangeR-rangeL+1)
+	}
+
+	return arr
 }

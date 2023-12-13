@@ -18,37 +18,17 @@ var args struct {
 	List      bool   `arg:"-L,--list" help:"list all algorithms"`
 }
 
+var algorithms = map[string]Sorter{
+	"bogosort":   sorting.Bogosort,
+	"sleepsort":  AdaptUint(sorting.Sleepsort),
+	"stalinsort": sorting.Stalinsort,
+}
+
+type Sorter func([]int) []int
+
 func init() {
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 	arg.MustParse(&args)
-
-	fmt.Println("Useless sorting algorithms!")
-}
-
-func AdaptSleepsort(arr []int) []int {
-	var uintArr []uint
-
-	for _, num := range arr {
-		uintArr = append(uintArr, uint(num))
-	}
-
-	result := sorting.SleepSort(uintArr)
-
-	var adaptedResult []int
-
-	for _, num := range result {
-		adaptedResult = append(adaptedResult, int(num))
-	}
-
-	return adaptedResult
-}
-
-func main() {
-	var algorithms = map[string]func([]int) []int{
-		"bogosort":   sorting.Bogosort,
-		"stalinsort": sorting.StalinSort,
-		"sleepsort":  AdaptSleepsort,
-	}
 
 	if args.List {
 		fmt.Println("List of useless sorting algorithms:")
@@ -57,8 +37,6 @@ func main() {
 		}
 		os.Exit(0)
 	}
-
-	var arr []int
 
 	if _, ok := algorithms[args.Algorithm]; !ok {
 		fmt.Println("Invalid algorithm. Use -L to list all algorithms")
@@ -70,11 +48,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	var max = int(math.Pow(float64(args.Lenght), 2))
+	fmt.Println("Useless sorting algorithms!")
+}
 
-	for i := 0; i < args.Lenght; i++ {
-		arr = append(arr, rand.Intn(max))
-	}
+func main() {
+	arr := utils.GenerateRandomArray(args.Lenght, 0, int(math.Pow10(args.Lenght)))
 
 	fmt.Printf("Running %s with %d elements\n\nInput: %v\n", args.Algorithm, args.Lenght, arr)
 
@@ -88,4 +66,23 @@ func main() {
 	fmt.Printf("Is sorted? %t\n", utils.IsSorted(result))
 
 	fmt.Printf("\nElapsed time: %s\n", elapsed)
+}
+
+// AdaptUint adapts a function that works on uint slices to work on int slices
+func AdaptUint(f func([]uint) []uint) Sorter {
+	return func(arr []int) []int {
+		uintArr := make([]uint, len(arr))
+		for i, v := range arr {
+			uintArr[i] = uint(v)
+		}
+
+		result := f(uintArr)
+
+		intArr := make([]int, len(result))
+		for i, v := range result {
+			intArr[i] = int(v)
+		}
+
+		return intArr
+	}
 }
