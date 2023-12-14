@@ -6,21 +6,14 @@ This project is a collection of some of the most inefficient sorting algorithms 
 
 ### Installing
 
-Clone the repository to your local machine:
-
 ```sh
+# Clone the repository to your local machine:
 git clone https://github.com/pietroagazzi/useless-sorting-algorithms.git
-```
 
-Navigate to the project directory:
-
-```sh
+# Navigate to the project directory:
 cd useless-sorting-algorithms
-```
 
-Build the project:
-
-```sh
+# Build the project:
 make build
 ```
 
@@ -32,7 +25,7 @@ To run the tests, use the following command:
 make test
 ```
 
-## Usage
+### Usage
 
 You can run the program with the following command:
 
