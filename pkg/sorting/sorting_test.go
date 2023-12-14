@@ -19,6 +19,7 @@ var algorithms = []struct {
 	{"Slowsort", utils.AdaptSlowsort(sorting.Slowsort)},
 	{"Stalinsort", sorting.Stalinsort},
 	{"Bogobogosort", sorting.Bogobogosort},
+	{"Bozosort", sorting.Bozosort},
 }
 
 type SortTest struct {

@@ -48,6 +48,10 @@ var algorithms = map[string]Algorithm{
 		Sorter:      sorting.Bogobogosort,
 		Description: "A sorting algorithm that is based on the idea of a bogo sort sorting itself.",
 	},
+	"bozosort": {
+		Sorter:      sorting.Bozosort,
+		Description: "A sorting algorithm that is based on the idea of a bogo sort sorting itself.",
+	},
 }
 
 func init() {
