@@ -41,9 +41,12 @@ var algorithms = map[string]Algorithm{
 		Description: "A joke sorting algorithm that 'solves' the problem of sorting a list by eliminating all elements out of order.",
 	},
 	"slowsort": {
-		Sorter: utils.AdaptSlowsort(sorting.Slowsort),
-		// Multiply and Surrender
+		Sorter:      utils.AdaptSlowsort(sorting.Slowsort),
 		Description: "A reluctant sorting algorithm based on the 'multiply and surrender' principle.",
+	},
+	"bogobogosort": {
+		Sorter:      sorting.Bogobogosort,
+		Description: "A sorting algorithm that is based on the idea of a bogo sort sorting itself.",
 	},
 }
 

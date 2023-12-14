@@ -67,3 +67,5 @@ The project includes the following sorting algorithms:
 4. [**Gnomesort**](https://en.wikipedia.org/wiki/Gnome_sort): A sorting algorithm that is based on the idea of a garden gnome sorting his flower pots.
 
 5. [**Slowsort**](https://en.wikipedia.org/wiki/Slowsort): An inefficient sorting algorithm based on the multiply and surrender paradigm.
+
+6. [**Bogobogosort**](https://en.wikipedia.org/wiki/Bogobogosort): An extremely inefficient sorting algorithm based on the generate and test paradigm. The algorithm successively generates permutations of its input until it finds one that is sorted.
