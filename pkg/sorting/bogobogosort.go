@@ -10,7 +10,7 @@ func Bogobogosort(arr []int) []int {
 		index++
 
 		if !utils.IsSorted(arr[:index]) {
-			Shuffle(&arr)
+			utils.Shuffle(&arr)
 			index = 2
 		}
 	}

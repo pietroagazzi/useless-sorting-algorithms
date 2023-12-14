@@ -23,33 +23,14 @@ func GenerateRandomArray(n, rangeL, rangeR int) []int {
 	return arr
 }
 
+// Shuffle shuffle the array
+func Shuffle(arr *[]int) {
+	for i := len(*arr) - 1; i > 0; i-- {
+		j := rand.Intn(i + 1)
+		(*arr)[i], (*arr)[j] = (*arr)[j], (*arr)[i]
+	}
+}
+
 func Swap(arr *[]int, e1 int, e2 int) {
 	(*arr)[e1], (*arr)[e2] = (*arr)[e2], (*arr)[e1]
-}
-
-type Sorter func([]int) []int
-
-func AdaptSlowsort(f func([]int, int, int) []int) Sorter {
-	return func(arr []int) []int {
-		return f(arr, 0, len(arr)-1)
-	}
-}
-
-// AdaptSleepsort adapts a function that works on uint slices to work on int slices
-func AdaptSleepsort(f func([]uint) []uint) Sorter {
-	return func(arr []int) []int {
-		uintArr := make([]uint, len(arr))
-		for i, v := range arr {
-			uintArr[i] = uint(v)
-		}
-
-		result := f(uintArr)
-
-		intArr := make([]int, len(result))
-		for i, v := range result {
-			intArr[i] = int(v)
-		}
-
-		return intArr
-	}
 }
